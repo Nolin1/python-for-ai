@@ -2,13 +2,14 @@ import requests
 from datetime import datetime, timedelta
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 today = datetime.now()
 week_ago = today - timedelta(days=7)
 
 #location
-latitude = 23.777
-longitude = 90.399
+latitude = 48.85
+longitude = 2.35
 
 #formate the dates
 
@@ -56,3 +57,9 @@ plt.tight_layout()
 # Save the plot
 plt.savefig('weather_chart.png')
 plt.show()
+
+if not os.path.exists('data'):
+    os.makedirs('data')
+
+data_frame.to_csv('data/paris_weather.csv', index=False)
+print("Data saved to data/paris_weather.csv")
