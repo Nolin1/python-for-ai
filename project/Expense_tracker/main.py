@@ -16,7 +16,7 @@ while True:
             date = input("Enter date: ")
             category = input("Enter category: ")
             description = input("Enter description: ")
-            amount = int(input("Enter amount: "))
+            amount = float(input("Enter amount: "))
 
             total_expence += amount
 
