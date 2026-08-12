@@ -1,0 +1,3 @@
+I am learning python
+Right now I am learning about files 
+how to open and handle file.
