@@ -1,10 +1,12 @@
 from cryptography.fernet import Fernet
 
-
+'''
 def write_key():
     key = Fernet.generate_key()
     with open("key.key", "wb") as key_file:
         key_file.write(key)
+'''
+
 
 def load_key():
     return open("key.key", "rb").read()
@@ -12,7 +14,7 @@ def load_key():
 
 
 master_pass = input("What is the master password: ")
-key = load_key() + master_pass.bytes
+key = load_key()
 fer = Fernet(key=key)
 
 def view():
@@ -21,7 +23,7 @@ def view():
             data = line.rstrip()
             user, pass_ = data.split("|")
 
-            print(f"Username: {user}, Password: {pass_}")
+            print(f"Username: {user}, Password: {fer.decrypt(pass_.encode()).decode()}")
 
 
 def new():
@@ -29,7 +31,7 @@ def new():
     password = input("Enter password: ")
 
     with open("Password.txt", mode="a") as f:
-        f.write(user_name + "|" + password + "\n")
+        f.write(user_name + "|" + str(fer.encrypt(password.encode()).decode()) + "\n")
 
 
 while True:
